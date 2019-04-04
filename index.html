@@ -12,25 +12,39 @@
 </head>
 <body>
       <div class= "container">
-                <div class="jumbotron">
-                <h1 class="display-4"><strong>Music Trivia!</strong></h1>                             
+                        <!-- Bootstrap -->
+          <div class="jumbotron">
+              <h1 class="display-4"><strong>Music Trivia!</strong></h1>                             
+          </div>
+                        <!-- Bootstrap -->
+          <div class="card">
+              <div class="card-body">
+                Test your knowledge of music, bands and artists.
+                You get 10 seconds per question.
               </div>
+          </div>
       </div>
-      
-      <div id= "rules">
-        <p>You get 10 seconds per question</p>
-        <p>There are 10 questions to test your knowledge of music bands and artists.</p>
-      </div>
+                        <!-- start of trivia -->
+      <div id= "game">
+          <div id="intro">         
+                        <!-- Botstrap Button -->
+              <button type="button" class="btn btn-primary">Start</button>
+          </div>
+          <div id="question"></div>
+                        <!-- answers to trivia questions -->
+          <div id="answers">
+            <button id="answerOne" class="answer"></button><br>
+            <button id="answerTwo" class="answer"></button><br>
+            <button id="answerThree" class="answer"></button><br>
+            <button id="answerFour" class="answer"></button>
+          </div>
 
-      <div class="wrapper">	
-        <div id= "timeleft"></div>
-        <div id= "questionblock"></div>
-        <div id= "answerblock"></div>
-        <button class ="btn btn-success" id ="start">Start Game</button><br>
-        <button class="btn btn-success" id="reset">Play Again?</button>
-      </div>
- 
+                        <!-- Boostrap Button -->
+          <div id="reset">
+            <button type="button" class="btn btn-primary">Try Again</button>
+          </div>
+        </div>
 
-    <script type="text/javascript" src="assets/javascript/game.js"></script>
+   <script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>
 </html>

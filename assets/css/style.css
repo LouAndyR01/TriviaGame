@@ -1,14 +1,12 @@
 body {
     background: url("../images/concert_image2.jpg"); 
     background-size: 100%; 
+    text-align: center;
 }
 
 .container {
     margin-top: 20px;
 }
-
-
-
 
 .jumbotron {
     max-width: 700px;
@@ -16,23 +14,33 @@ body {
     text-align: center;
     padding-top:10px;
     margin: 0 auto;
-    border-radius: 15px;
-    background: #8ABBA4;
+    border-radius: 25px;
+    background: none;
+    font-size: 25px;
+    color: #83ff00;
+    font-weight: bolder;
 } 
-    
-#rules {
-    background-color: #d866b4;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #613b68;
-    font-size: 20px;
-    line-height: 20px;
-    width: 450px;
-    padding: 15px;
-    margin: 10px;
-    border-radius: 15px;
-    vertical-align: center;
-}   
 
+.card {
+    max-width: 1000px;
+    border-radius: 25px;
+    margin: auto;
+    background: none;
+    border: none;
+    /* opacity: 0; */
+  
+}
 
+.card-body {
+    font-size: 22px;
+    font-weight: bold;
+    color: #83ff00;
 
+}
+  
+button {
+    font-family: 'Noto Sans', sans-serif;
+    border: 2px solid #000;
+    padding: 5px 20px;
+}
 
