@@ -1,118 +1,200 @@
+    $(document).ready(function(){ 
 
-
-var options= [{
+    $("#start").on("click", function(){
+      $("#start").remove();
+       game.loadQuestion();
+    })
+    
+    $(document).on('click','.answer-button',function(e){
+    game.clicked(e);
+    })
+    
+    $(document).on('click', '#reset', function(){
+      game.reset();
+    })
+    
+    var questions = [{
     question: "Which artist or band opened the Woodstock Festival in 1969?",
-    choices: ["Joe Cocker", "Jimi Hendrix", "Richie Havens", "Janis Joplin"],
+    answers: ["Joe Cocker", "Jimi Hendrix", "Richie Havens", "Janis Joplin"],
     correctAnswer: "Richie Havens",
-      }, {
-
+    image: "assets/images.gif"
+    }, {
+    
     question: "Which European country hosts the annual music festival Tomorrowland?",
-    choices:  ["Germany", "Belgium","Denmark", "Greece"],
-    correctAnswer: "Beligium",
-     }, {
-
+    answers: ["Germany", "Belgium","Denmark", "Greece"],
+    correctAnswer: "Belguim",
+    image: "assets/images.gif"
+    },{
+    
     question: "Which band realeased the album Abbey Road?",
-    choices: ["The Monkees", "The Rolling Stones","Pink Floyd", "The Beatles"], 
+    answers: ["The Monkees", "The Rolling Stones","Pink Floyd", "The Beatles"],
     correctAnswer: "The Beatles",
-    }, {
+    image: "assets/images.gif"
+    },{
 
-    question: "What is the name of the lead singer for Red Hot Chili Peppers?",
-    choices: ["Trent Reznor", "Anthony Kiedis", "Jack White", "Gavin Rossdale"], 
+    question: "What is the name of the lead singer for Red Hot Chili Peppers?", 
+    answers: ["Trent Reznor", "Anthony Kiedis", "Jack White", "Gavin Rossdale"],
     correctAnswer: "Anthony Kiedis",
-    }, {
+    image: "assets/images.gif"
+    },{
 
     question: "Which artist holds the record for the most Grammys won?",
-    choices: ["Michael Jackson", "George Solti", "Quincy Jones", "Alison Krauss"],
-    correctAnswer: "George Solti", 
-    }, {
-  
-    question: "Which band produced the theme song for The Big Bang Theory?",
-    choices: ["Barenaked Ladies", "Green Day", "Weezer", "Blind Melon"], 
-    correctAnswer: "Bare Naked Ladies",
-    }, {
+    answers: ["Michael Jackson", "George Solti", "Quincy Jones", "Alison Krauss"],
+    correctAnswer: "George Solti",
+    image: "assets/images.gif"
+    },{
 
-    question: "What was the name of Nirvana's debut album?",  
-    choices: ["Volume 1", "In Bloom", "Bleach", "Lithium"], 
+    question: "Which band produced the theme song for The Big Bang Thory?",
+    answers: ["Barenaked Ladies", "Green Day", "Weezer", "Blind Melon"],
+    correctAnswer: "Barenaked Ladies",
+    image: "assets/images.gif"
+    },{
+
+    question: "What was the name of Nirvana's debut album?",
+    answers: ["Volume 1","In Bloom", "Bleach", "Lithium"], 
     correctAnswer: "Bleach",
-    }, {
-
+    image: "assets/image.gif"
+    },{
+    
     question: "What band does David Groel lead sing for?",
-    choices: ["Rage Against the Machine", "Snow Patrol","Imagine Dragons","Foo Fighters"],
-    correctAnswer: "David Grohl", 
-    }, {
-
+    answers: ["Rage Against the Machine", "Snow Patrol","Imagine Dragons","Foo Fighters"],
+    correctAnswer: "Dave Grohl",
+    image: "assets/image.gif"
+    },{
+      
     question: "Which latin artist is known as Mr. World Wide?",
-    choices: ["Pitbull", "Julio Iglesias", "Marc Anthony", "Santana"],
+    answers: ["Pitbull", "Julio Iglesias", "Marc Anthony", "Santana"],
     correctAnswer: "Pitbull",
-    }, {
+    image: "assets/image.gif"
+    },{
 
-    question: "Which band headlined for Super Bowl LIII?",
-    choices: ["Justin Timberlake","Travis Scott", "Maroon 5", "Coldplay"],
-    correctAnswer: "Maroon 5",
-    }];
-
-    var startTrivia;
-    var resetTrivia;
-    var timer;
-    var currentQuestion = 0;
-    var selectedAnswer;
-    var correctAnswers= 0;
-    var wrongAnswers = 0;
-    var counter = 10;
-    var triviaHTML;
-
-    $(document).ready(function(){
-
-      function greeting() {
+    querstion: "Which band headlined for Super Bowl LIII?",
+    answers: ["Justin Timberlake","Travis Scott", "Maroon 5", "Coldplay"],
+    correctAnswer: "Maroon5",
+    image: "assets,image.gif"
+    }];      
+                    
+         function greeting() {
         startTrivia = $("<button>");
         startTrivia.addClass("text-center btn btn-warning btn-lg startBtn");
         startTrivia.text("Start Trivia");
         $(".main-area").html(startTrivia);
+        console.log(greeting);
       };
         greeting();
     $(".startBtn").on("click", function(event) {
-      gameHtml();
+      gameHTML();
       timerTrivia();
     });
   });
 
-// not going to use this setup. DO NOT DELETE, JUST IN CASE!!!!
-    // "Which artist or band opened the Woodstock Festival in 1969?",
-    // "Which European country hosts the annual music festival Tomorrowland?",
-    // "Which band realeased the album Abbey Road?",
-    // "What is the name of the lead singer for Red Hot Chili Peppers?",
-    // "Which artist holds the record for the most Grammys won?",
-    // "Which band produced the theme song for The Big Bang THeory?",
-    // "What was the name of Nirvana's debut album?",
-    // "What band does David Groel lead sing for?",
-    // "Which latin artist is known as Mr. World Wide?",
-    // "Which band headlined for Super Bowl LIII?",
+  function triviaTimeOut(){
+    wrongAnswers++; 
+    triviaHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>";
+    $(".main-area").html(triviaHTML);
+    setTimeout(wait, 3000);
+    var loss = $("<p>");
+    loss.addClass("text-center");
+    loss.text("You ran out of time! The correct answer is: " + correctAnswers[currentQuestion]);
+    $(".main-area").append(loss);
+  }
 
+  function triviaWin() {
+    correctAswers++;
+    triviaHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>";
+    $(".main-area").html(triviaHTML);
+    setTimeout(wait,3000);
+    var win = $("<p>");
+    win.addClass("text-center");
+    win.text("Rock On! You are correct: " + correct[currentQuestion]);
+    $(".main-area").append(win);
+    $(".main-area").append(images[currentQuestion]);
+  };
 
-// var answerChoices= [
+  function triviaLoss() {
+    wrongAnswers++;
+    triviaHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>";
+    $(".main-area").html(triviaHTML);
+    setTimeout(wait,3000);
+    var loss = $("<p>");
+    loss.addClass("text-center");
+    loss.text("WRONG!!! The correct answer is: " + correct[currentQuestion]);
+    $(".main-area").append(loss);
+  };
 
-//     ["Joe Cocker", "Jimi Hendrix", "Richie Havens", "Janis Joplin"],  
-//     ["Germany", "Belgium","Denmark", "Greece"],
-//     ["The Monkees", "The Rolling Stones","Pink Floyd", "The Beatles"],
-//     ["Trent Reznor", "Anthony Kiedis", "Jack White", "Gavin Rossdale"],
-//     ["Michael Jackson", "George Solti", "Quincy Jones", "Alison Krauss"],
-//     ["Barenaked Ladies", "Green Day", "Weezer", "Blind Melon"],
-//     ["Volume 1","In Bloo", "Bleach", "Lithium"],
-//     ["Rage Against the Machine", "Snow Patrol","Imagine Dragons","Foo Fighters"],
-//     ["Pitbull", "Julio Iglesias", "Marc Anthony", "Santana"],
-//     ["Justin Timberlake","Travis Scott", "Maroon 5", "Coldplay"]],
+    function gameHTML(){}
+    triviaHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>";
+    $(".main-area").html(triviaHTML);
+    for (var i=0; i<4; i++) {
+      var answerBtn = $("<button>");
+      answerBtn.addClass("text-center btn btn-warning btn-lg answer");
+      answerBtn.text(choices[currentQuestion][i]);
+      $("main-area").append(answerBtn);
+  }
 
-// var correctAnswers= ["Richie Havens", "Beligium", "The Beatles", "Anthony Kiedis", 
-//                         "George Solti", "Bare Naked Ladies", "Bleach", "David Grohl", "Pitbull", "Maroon 5"];
+  $(".answer").on("click", function(event) {
+    selectedAnswer = $(this).text();
+    if (selectedAnswer === correct[currentQuest]) {
+      triviaWin();
+      clearInterval(timer);
 
+    } else {
+      clearInterval(timer);
+      triviaLoss();
 
+    };
+  }); 
 
+  function wait() {
+    if (currentQuestion < 9) {
+        currentQuestion++;
+        gameHTML();
+        counter = 10;
+        timerTrivia();
+    }
+    else {
+        results();
+    }
+};
 
+function timerTrivia() {
+	timer = setInterval(tenSeconds, 10000);
+	function tenSeconds() {
+		if (counter === 0) {
+			clearInterval(timer);
+			triviaTimeOut();
+		}
+		if (counter > 0) {
+			counter--;
+		}
+		$(".timer").html(counter);
+	};
+};
 
+function results() {
 
+		resetTrivia = $("<button>");
+		resetTrivia.addClass("text-center btn btn-warning btn-lg resetBtn");
+		resetTrivia.text("Play Again!");
+		$(".main-area").html(resetTrivia);
+		resetTitle = $("<h2>");
+		resetTitle.addClass("text-center").text("And the results are...");
+		$(".main-area").append(resetTitle);
+		var summaryCorrect = $("<p>");
+		summaryCorrect.addClass("text-center").text("Correct Answers: " + correctAnswers);
+		$(".main-area").append(summaryCorrect);
+		var summaryWrong = $("<p>");
+		summaryWrong.addClass("text-center").text("Wrong Answers: " + wrongAnswers);
+		$(".main-area").append(summaryWrong);
 
+		$(".resetBtn").on("click", function(event) {
+        	window.location.reload();
+    	});	
+};
 
-
+    results();
+      
+  
 
 
 
