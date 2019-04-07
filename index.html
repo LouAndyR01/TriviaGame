@@ -5,46 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Trivia Game</title>
-    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css"><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
+   
 </head>
 <body>
-      <div class= "container">
+    <div class= "trivia_game">
                         <!-- Bootstrap -->
-          <div class="jumbotron">
+      <div class="jumbotron">
               <h1 class="display-4"><strong>Music Trivia!</strong></h1>                             
-          </div>
-                        <!-- Bootstrap -->
-          <div class="card">
-              <div class="card-body">
-                Test your knowledge of music, bands and artists.
-                You get 10 seconds per question.
-              </div>
-          </div>
       </div>
-                        <!-- start of trivia -->
-      <div id= "game">
-          <div id="intro">         
+                        <!-- Bootstrap -->
+        <div class= "game_area">
+          <div class="card-body">
+            Test your knowledge of music, bands and artists.
+            You get 10 seconds per question!
+            <div class= "answer_choices">
                         <!-- Botstrap Button -->
-              <button type="button" class="btn btn-primary">Start</button>
-          </div>
-          <div id="question"></div>
-                        <!-- answers to trivia questions -->
-          <div id="answers">
-            <button id="answerOne" class="answer"></button><br>
-            <button id="answerTwo" class="answer"></button><br>
-            <button id="answerThree" class="answer"></button><br>
-            <button id="answerFour" class="answer"></button>
-          </div>
-
-                        <!-- Boostrap Button -->
-          <div id="reset">
-            <button type="button" class="btn btn-primary">Try Again</button>
+             <button id="start" class="btn btn-primary">Start</button>
+            </div>
           </div>
         </div>
+    </div>     
+  
+  <script type="text/javascript" src="assets/javascript/app.js"></script>
 
-   <script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>
 </html>
