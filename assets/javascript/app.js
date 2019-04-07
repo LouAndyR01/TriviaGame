@@ -5,15 +5,17 @@
         $("#start").remove();
           game.loadQuestion();
     })
-              // events here, did not know to use(e)!!!!!!!!!!!
+              //on click events here to get game going from mouse click. 
       $(document).on('click','.answer-button',function(e){
       game.clicked(e);
     })
-      
+              //on click events here to get game going from mouse click. 
       $(document).on('click', '#reset', function(){
         game.reset();
     })
     
+              // setting up all user information.  decided to use this formate instead of the
+              // putting all of the items in one array.
   var questions = [{
       question: "Which artist or band opened the Woodstock Festival in 1969?",
       answers: ["Joe Cocker", "Jimi Hendrix", "Richie Havens", "Janis Joplin"],
@@ -93,7 +95,7 @@
       }
     },
 
-               //loading question and begin count down timer
+               //loading question and begin count down timer. ****needed help here*****
       loadQuestion: function(){
       timer = setInterval(game.countdown,1000);
       $('#wrapper').html("Time Remaining <span id=counter>10</span> Seconds")
@@ -143,7 +145,7 @@
       timeUp: function() {
       clearInterval(timer);
       game.unanswered++;
-      $('#wrapper').html('Time is Up!');
+      $('#wrapper').html('Time is Up! ');
       $('#wrapper').append('The correct answer is: ' +questions[game.currentQuestion].correctAnswer);
       $('#image').html("<img src='" + questions[game.currentQuestion].image + "'/>");
       if(game.currentQuestion==questions.length-1){
