@@ -17,8 +17,8 @@
       question: "Which artist or band opened the Woodstock Festival in 1969?",
       answers: ["Joe Cocker", "Jimi Hendrix", "Richie Havens", "Janis Joplin"],
       correctAnswer: "Richie Havens",
-      
-    },{
+      image: "assets/images.gif"
+    }, {
   
       question: "Which European country hosts the annual music festival Tomorrowland?",
       answers: ["Germany", "Belgium","Denmark", "Greece"],
@@ -94,10 +94,10 @@
 
       loadQuestion: function(){
       timer = setInterval(game.countdown,1000);
-      $('#subwrapper').text("Time Remaining +<span id=counter>10</span> Seconds")
-      $('#subwrapper').append('<h2>' + questions[game.currentQuestion].question +'</h2>');
+      $('#wrapper').text("Time Remaining +<span id=counter>10</span> Seconds")
+      $('#wrapper').append('<h2>' + questions[game.currentQuestion].question +'</h2>');
       for(var i=0; i<questions[game.currentQuestion].answers.length; i++){
-      $('#subwrapper').append('<button class="answer-button" id="button-'+i+'"data-name="'+questions[game.currentQuestion].answers[i] +'">'+questions[game.currentQuestion].answers[i]+'</button>');
+      $('#wrapper').append('<button class="answer-button" id="button-'+i+'"data-name="'+questions[game.currentQuestion].answers[i] +'">'+questions[game.currentQuestion].answers[i]+'</button>');
       }
       },
 
@@ -112,8 +112,8 @@
       timeUp: function() {
       clearInterval(timer);
       game.unanswered++;
-      $('#subwrapper').text('Time is Up!');
-      $('#subwrapper').append('The correct answer is: ' +questions[game.currentQuestion].correctAnswer);
+      $('#wrapper').text('Time is Up!');
+      $('#wrapper').append('The correct answer is: ' +questions[game.currentQuestion].correctAnswer);
       $('#image').text("<img src='" + questions[game.currentQuestion].image + "'/>");
       if(game.currentQuestion==questions.length-1){
       setTimeout(game.results,2000);
@@ -124,11 +124,11 @@
 
       results: function() {
       clearInterval(timer);
-      $('#subwrapper').text("Game Over");
-      $('#subwrapper').append("<h3>Correct: "+game.correct +"</h3>");
-      $('#subwrapper').append("<h3>Incorrect: "+game.incorrect +"</h3>");
-      $('#subwrapper').append("<h3>Unanswered: "+game.unanswered+"</h3>");
-      $('#subwrapper').append("<button id='reset'>Reset");
+      $('#wrapper').text("Game Over");
+      $('#wrapper').append("<h3>Correct: "+game.correct +"</h3>");
+      $('#wrapper').append("<h3>Incorrect: "+game.incorrect +"</h3>");
+      $('#wrapper').append("<h3>Unanswered: "+game.unanswered+"</h3>");
+      $('#wrapper').append("<button id='reset'>Reset");
       $("#image").text("");
   
    },
@@ -146,7 +146,7 @@
       console.log("correct");
       clearInterval(timer);
       game.correct++;
-      $('#subwrapper').text("Correct! You Rock!!!");
+      $('#wrapper').text("Correct! You Rock!!!");
       $('#image').text("<img src='" + questions[game.currentQuestion].image + "'/>");
       if(game.currentQuestion==questions.length-1){
       setTimeout(game.results,2000);
@@ -159,8 +159,8 @@
       // console.log("WRONG!");
       clearInterval(timer);
       game.incorrect++;
-      $('#subwrapper').text("Wrong Answer!");
-      $('#subwrapper').append('<h3>The correct answer is: ' +questions[game.currentQuestion].correctAnswer+ '</h3>');
+      $('#wrapper').text("Wrong Answer!");
+      $('#wrapper').append('<h3>The correct answer is: ' +questions[game.currentQuestion].correctAnswer+ '</h3>');
       $('#image').text("<img src='" + questions[game.currentQuestion].image + "'/>");
       if(game.currentQuestion==questions.length-1){
       setTimeout(game.results,2000);
